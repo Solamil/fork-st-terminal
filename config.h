@@ -84,6 +84,8 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* solarized dark */
@@ -174,16 +176,16 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ ALT_KEY,              XK_Page_Down,   zoom,           {.f = +1} },
-	{ ALT_KEY,              XK_Page_Up,     zoom,           {.f = -1} },
+	{ ALT_KEY,              XK_Page_Up,   	zoom,           {.f = +1} },
+	{ ALT_KEY,              XK_Page_Down,   zoom,           {.f = -1} },
 	{ ALT_KEY,              XK_Home,        zoomreset,      {.f =  0} },
 	{ ALT_KEY,              XK_y,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ ALT_KEY,              XK_p,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ALT_KEY,            	XK_k,     	kscrollup,      {.i = 1} },
-	{ ALT_KEY,            	XK_j,   	kscrolldown,    {.i = 1} },
+	{ ALT_KEY,            	XK_u,     	kscrollup,      {.i = 1} },
+	{ ALT_KEY,            	XK_d,   	kscrolldown,    {.i = 1} },
 };
 
 /*
