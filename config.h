@@ -86,6 +86,9 @@ unsigned int tabspaces = 8;
 
 
 
+/* bg opacity */
+float alpha = 0.92;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* solarized dark */
@@ -116,6 +119,14 @@ unsigned int defaultfg = 12;
 unsigned int defaultbg = 8;
 static unsigned int defaultcs = 14;
 static unsigned int defaultrcs = 15;
+
+
+/* Colors used for selection */
+unsigned int selectionbg = 12;
+unsigned int selectionfg = 8;
+/* If 0 use selectionfg as foreground in order to have a uniform foreground-color */
+/* Else if 1 keep original foreground-color of each cell => more colors :) */
+static int ignoreselfg = 0;
 
 /*
  * Default shape of cursor
