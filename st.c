@@ -161,6 +161,7 @@ typedef struct {
 } STREscape;
 
 static void execsh(char *, char **);
+static char *getcwd_by_pid(pid_t pid);
 static void stty(char **);
 static void sigchld(int);
 static void ttywriteraw(const char *, size_t);
@@ -831,7 +832,6 @@ ttyread(void)
 	static char buf[BUFSIZ];
 	static int buflen = 0;
 	int ret, written;
-
 	/* append read bytes to unprocessed bytes */
 	ret = read(cmdfd, buf+buflen, LEN(buf)-buflen);
 
@@ -889,7 +889,7 @@ ttywriteraw(const char *s, size_t n)
 	fd_set wfd, rfd;
 	ssize_t r;
 	size_t lim = 256;
-
+		
 	/*
 	 * Remember that we are using a pty, which might be a modem line.
 	 * Writing too much will clog the line. That's why we are doing this
@@ -1061,6 +1061,26 @@ tnew(int col, int row)
 int tisaltscr(void)
 {
 	return IS_SET(MODE_ALTSCREEN);
+}
+
+void
+newterm(const Arg* a)
+{
+	switch (fork()) {
+	case -1:
+		die("fork failed: %s\n", strerror(errno));
+		break;
+	case 0:
+		chdir(getcwd_by_pid(pid));
+		execlp("st", "./st", NULL);
+		break;
+	}
+}
+
+static char *getcwd_by_pid(pid_t pid) {
+	char buf[32];
+	snprintf(buf, sizeof buf, "/proc/%d/cwd", pid);
+	return realpath(buf, NULL);
 }
 
 void
@@ -2520,7 +2540,6 @@ twrite(const char *buf, int buflen, int show_ctrl)
 	int charsize;
 	Rune u;
 	int n;
-
 	for (n = 0; n < buflen; n += charsize) {
 		if (IS_SET(MODE_UTF8) && !IS_SET(MODE_SIXEL)) {
 			/* process a complete utf8 char */
