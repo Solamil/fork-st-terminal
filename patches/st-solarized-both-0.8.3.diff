@@ -10,10 +10,10 @@ Port st-solarized-both to 0.8.3
  x.c          | 26 +++++++++++++++----
  3 files changed, 65 insertions(+), 34 deletions(-)
 
-diff --git a/config.def.h b/config.def.h
+diff --git a/config.h b/config.h
 index 8a58f1c..1010a4f 100644
---- a/config.def.h
-+++ b/config.def.h
+--- a/config.h
++++ b/config.h
 @@ -86,31 +86,44 @@ unsigned int tabspaces = 8;
  
  /* Terminal colors (16 first used in escape sequence) */

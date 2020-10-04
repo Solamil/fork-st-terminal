@@ -110,6 +110,26 @@ static const char *colorname[] = {
 	"#fdf6e3",  /* 15: brwhite  */
 };
 
+/* Terminal colors for alternate (light) palette */
+static const char *altcolorname[] = {
+	/* solarized light */
+	"#eee8d5",  /*  0: black    */
+	"#dc322f",  /*  1: red      */
+	"#859900",  /*  2: green    */
+	"#b58900",  /*  3: yellow   */
+	"#268bd2",  /*  4: blue     */
+	"#d33682",  /*  5: magenta  */
+	"#2aa198",  /*  6: cyan     */
+	"#073642",  /*  7: white    */
+	"#fdf6e3",  /*  8: brblack  */
+	"#cb4b16",  /*  9: brred    */
+	"#93a1a1",  /* 10: brgreen  */
+	"#839496",  /* 11: bryellow */
+	"#657b83",  /* 12: brblue   */
+	"#6c71c4",  /* 13: brmagenta*/
+	"#586e75",  /* 14: brcyan   */
+	"#002b36",  /* 15: brwhite  */
+ };
 
 /*
  * Default colors (colorname index)
@@ -178,7 +198,7 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define ALT_KEY Mod1Mask
+#define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
@@ -187,19 +207,20 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ ALT_KEY,              XK_Page_Up,   	zoom,           {.f = +1} },
-	{ ALT_KEY,              XK_Page_Down,   zoom,           {.f = -1} },
-	{ ALT_KEY,              XK_Home,        zoomreset,      {.f =  0} },
-	{ ALT_KEY,              XK_y,           clipcopy,       {.i =  0} },
+	{ MODKEY,               XK_Page_Up,   	zoom,           {.f = +1} },
+	{ MODKEY,               XK_Page_Down,   zoom,           {.f = -1} },
+	{ MODKEY,               XK_Home,        zoomreset,      {.f =  0} },
+	{ MODKEY,               XK_y,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ ALT_KEY,              XK_p,           selpaste,       {.i =  0} },
+	{ MODKEY,               XK_p,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ALT_KEY, 		XK_Return,	newterm,	{.i =  0} },
-	{ ALT_KEY,            	XK_u,     	kscrollup,      {.i = 10} },
-	{ ALT_KEY,            	XK_d,   	kscrolldown,    {.i = 10} },
-	{ ALT_KEY,            	XK_k,     	kscrollup,      {.i = 1} },
-	{ ALT_KEY,            	XK_j,   	kscrolldown,    {.i = 1} },
+	{ MODKEY, 		XK_Return,	newterm,	{.i =  0} },
+	{ MODKEY,            	XK_u,     	kscrollup,      {.i = 10} },
+	{ MODKEY,            	XK_d,   	kscrolldown,    {.i = 10} },
+	{ MODKEY,            	XK_k,     	kscrollup,      {.i = 1} },
+	{ MODKEY,            	XK_j,   	kscrolldown,    {.i = 1} },
+	{ MODKEY,           	XK_F6,          swapcolors,     {.i =  0} },
 };
 
 /*
